@@ -1,4 +1,4 @@
-# Custom Gtk.SourceView Languages
+# Custom Gtk.SourceView Language Specs
 
 This is a set of [language specs](https://developer.gnome.org/gtksourceview/stable/lang-reference.html) used in [ThiefMD](https://thiefmd.com)
 
@@ -15,6 +15,7 @@ This is a set of [language specs](https://developer.gnome.org/gtksourceview/stab
 In this example, we packages the language-specs in our `Build.PKGDATADIR/gtksourceview-4/language-specs`.
 
 ```vala
+    Gtk.SourceLanguageManager thief_languages;
     public Gtk.SourceLanguageManager get_language_manager () {
         if (thief_languages == null) {
             thief_languages = new Gtk.SourceLanguageManager ();
