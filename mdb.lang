@@ -189,6 +189,36 @@
             <end>^```$</end>
             <include>
                 <context ref="python:python"/>
+                <context id="perl-keywords" style-ref="def:keyword">
+                    <keyword>use</keyword>
+                    <keyword>break</keyword>
+                    <keyword>continue</keyword>
+                    <keyword>do</keyword>
+                    <keyword>default</keyword>
+                    <keyword>each</keyword>
+                    <keyword>else</keyword>
+                    <keyword>elsif</keyword>
+                    <keyword>foreach</keyword>
+                    <keyword>for</keyword>
+                    <keyword>given</keyword>
+                    <keyword>if</keyword>
+                    <keyword>last</keyword>
+                    <keyword>local</keyword>
+                    <keyword>my</keyword>
+                    <keyword>next</keyword>
+                    <keyword>our</keyword>
+                    <keyword>package</keyword>
+                    <keyword>return</keyword>
+                    <keyword>sub</keyword>
+                    <keyword>state</keyword>
+                    <keyword>unless</keyword>
+                    <keyword>until</keyword>
+                    <keyword>when</keyword>
+                    <keyword>while</keyword>
+                    <keyword>__FILE__</keyword>
+                    <keyword>__LINE__</keyword>
+                    <keyword>__PACKAGE__</keyword>
+                </context>
             </include>
         </context>
 
