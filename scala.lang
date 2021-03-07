@@ -121,8 +121,8 @@
     </context>
 
     <context id="literal-identifier">
-      <start>`</start>
-      <end>`</end>
+      <start>(\s+|[^`]|$)`</start>
+      <end>`(\s+|[^`]|$)</end>
     </context>
 
     <context id="external" style-ref="external">

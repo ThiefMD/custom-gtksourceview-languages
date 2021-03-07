@@ -418,6 +418,10 @@
         <context ref="mdb:code-block-perl"/>
         <context ref="mdb:code-block-bash"/>
         <context ref="mdb:code-block-php"/>
+        <context ref="mdb:code-block-csharp"/>
+        <context ref="mdb:code-block-nim"/>
+        <context ref="mdb:code-block-scala"/>
+        <context ref="mdb:code-block-typescript"/>
         <context ref="code-block"/>
         <context ref="1-backtick-code-span"/>
         <context ref="2-backticks-code-span"/>

@@ -150,7 +150,7 @@
     </context>
 
     <define-regex id="symbol" extended="true">
-      \! | \` | \\ |
+      \! | \\ |
       \+ | \- | \* | / | % |
       \? | : |
       = |

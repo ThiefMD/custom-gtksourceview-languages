@@ -3,10 +3,18 @@
     <default-regex-options case-sensitive="false"/>
     <definitions>
         <context id="code-block-vala" class="no-spell-check" style-ref="markdown:code-block">
-            <start>^```(vala|c#)$</start>
+            <start>^```(vala)$</start>
             <end>^```$</end>
             <include>
                 <context ref="vala:vala"/>
+            </include>
+        </context>
+
+        <context id="code-block-csharp" class="no-spell-check" style-ref="markdown:code-block">
+            <start>^```(c#|csharp|c-sharp)$</start>
+            <end>^```$</end>
+            <include>
+                <context ref="c-sharp:c-sharp"/>
             </include>
         </context>
 
@@ -23,6 +31,20 @@
             <end>^```$</end>
             <include>
                 <context ref="python:python"/>
+            </include>
+        </context>
+
+        <context id="code-block-nim" class="no-spell-check" style-ref="markdown:code-block">
+            <start>^```(nim)$</start>
+            <end>^```$</end>
+            <include>
+                <context ref="python:python"/>
+                <context id="nim-keywords" style-ref="def:keyword">
+                    <keyword>iterator</keyword>
+                    <keyword>var</keyword>
+                    <keyword>type</keyword>
+                    <keyword>object</keyword>
+                </context>
             </include>
         </context>
 
@@ -167,6 +189,22 @@
             <end>^```$</end>
             <include>
                 <context ref="python:python"/>
+            </include>
+        </context>
+
+        <context id="code-block-scala" class="no-spell-check" style-ref="markdown:code-block">
+            <start>^```(scala)$</start>
+            <end>^```$</end>
+            <include>
+                <context ref="scala:scala"/>
+            </include>
+        </context>
+
+        <context id="code-block-typescript" class="no-spell-check" style-ref="markdown:code-block">
+            <start>^```(typescript|ts)$</start>
+            <end>^```$</end>
+            <include>
+                <context ref="typescript:typescript"/>
             </include>
         </context>
 
