@@ -21,8 +21,8 @@
 -->
 <language id="fountain" _name="Fountain" version="2.0" _section="Others">
     <metadata>
-        <property name="mimetypes"></property>
-        <property name="globs">*.fou;*.fountain</property>
+        <property name="mimetypes">text/fountain</property>
+        <property name="globs">*.fou;*.fountain;*.spmd</property>
         <property name="parenthetical-start">(</property>
         <property name="parenthetical-end">)</property>
         <property name="notes-start">(</property>
