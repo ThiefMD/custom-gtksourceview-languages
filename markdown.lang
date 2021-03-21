@@ -235,21 +235,33 @@
     -->
     <context id="inline-link">
       <match extended="true">
-        \[(.*?)\]          # Link text.
-        \(                 # Literal opening parenthesis.
-          [ \t]*           # Optional spaces or tabs after the opening parenthesis.
-          (&lt;(.*?)&gt; | # URL with brackets.
-          (.*?))           # URL without brackets.
-          ([ \t]+(".*?"))? # Optional title.
-          [ \t]*           # Optional spaces or tabs before the closing parenthesis.
-        \)                 # Literal closing parenthesis.
+        (?&lt;text_group&gt;            # Text group, including square brackets
+          \[(                           # Capture Link Text without ['s ]'s
+            (?>                         # (?> defines an atomic group, this is a performance improvement when using recursion
+              [^\[\]]+                  # Look for any char except closing square bracket
+              |(?&amp;text_group)       # OR: find recursively an other pattern with opening and closing square brackets
+            )*
+          )\]
+        )
+        (?:
+          \(
+            (\S*?)                       # URL: non-greedy non-whitespace characters
+            (?:
+              [ ]
+              "
+                (
+                  (?:[^"]|(?&lt;=\\)")*? # Title without double quotes around
+                )
+              "
+            )?
+          \)
+        )
       </match>
 
       <include>
-        <context sub-pattern="1" style-ref="link-text"/>
+        <context sub-pattern="2" style-ref="link-text"/>
         <context sub-pattern="3" class="no-spell-check" style-ref="url"/>
-        <context sub-pattern="4" class="no-spell-check" style-ref="url"/>
-        <context sub-pattern="6" style-ref="attribute-value"/>
+        <context sub-pattern="4" style-ref="attribute-value"/>
       </include>
     </context>
 
@@ -262,7 +274,7 @@
     <!-- Note: some assertions are used to differentiate reference link from
          link label. -->
     <context id="reference-link">
-      <match>(?&lt;!^ |^  |^   )\[(.*?)\]([ \t]?\[(.*?)\])?(?!:)</match>
+      <match>(?&lt;!^ |^  |^   )\[\^?(.*?)\]([ \t]?\[(.*?)\])?(?!:)</match>
 
       <include>
         <context sub-pattern="1" style-ref="link-text"/>
@@ -291,6 +303,22 @@
         <context sub-pattern="3" class="no-spell-check" style-ref="url"/>
         <context sub-pattern="4" class="no-spell-check" style-ref="url"/>
         <context sub-pattern="6" style-ref="attribute-value"/>
+      </include>
+    </context>
+
+    <!-- Examples:
+         [^foot-note]: Foot note text
+    -->
+    <context id="footnote-definition">
+      <match extended="true">
+        ^[ ]{0,3}             # Maximum 3 spaces at the beginning of the line.
+        \[\^(.+?)\]:          # Footnote Label with Color
+        [ \t]*                # Optional spaces or tabs.
+        (.+?)$                # Footnote text.
+      </match>
+
+      <include>
+        <context sub-pattern="1" class="no-spell-check" style-ref="label"/>
       </include>
     </context>
 
@@ -431,6 +459,7 @@
         <context ref="inline-link"/>
         <context ref="reference-link"/>
         <context ref="link-definition"/>
+        <context ref="footnote-definition"/>
         <context ref="inline-image"/>
         <context ref="reference-image"/>
         <context ref="underscores-emphasis"/>

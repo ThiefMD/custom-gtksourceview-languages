@@ -8,6 +8,8 @@ This is a set of [language specs](https://developer.gnome.org/gtksourceview/stab
 * Code block language highlighting support
 * Blockquote style applied to whole line
 * Support for \~\~delete\~\~ tag
+* Support for footnotes
+* Fix reference/footnote from globbing link in same line
 * Change in XML and HTML comment styling
 
 ## Usage
