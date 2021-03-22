@@ -38,8 +38,8 @@
         <style id="character" _name="Character" map-to="def:strong-emphasis"/>
         <style id="dual" _name="Dual Dialogue" map-to="def:strong-emphasis"/>
         <style id="parenthetical" _name="Parenthetical" map-to="def:comment"/>
-        <style id="transition" _name="Transition" map-to="def:link-text"/>
-        <style id="transition-do" _name="Transition" map-to="def:link-text"/>
+        <style id="transition" _name="Transition" map-to="def:emphasis"/>
+        <style id="transition-do" _name="Transition" map-to="def:emphasis"/>
         <style id="breaks" _name="Page Breaks" map-to="def:thematic-break"/>
         <style id="notes" _name="Notes" map-to="def:inline-code"/>
         <style id="note-block" _name="Note Block" map-to="def:preformatted-section"/>
