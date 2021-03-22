@@ -44,8 +44,7 @@
         <style id="notes" _name="Notes" map-to="def:inline-code"/>
         <style id="note-block" _name="Note Block" map-to="def:preformatted-section"/>
         <style id="boneyard" _name="Boneyard" map-to="def:preprocessor"/>
-        <style id="sections" _name="Sections" map-to="def:preprocessor"/>
-        <style id="synopses" _name="Synopses" map-to="def:preprocessor"/>
+        <style id="synopses" _name="Synopses" map-to="def:comment"/>
         <style id="title" _name="Title" map-to="def:string"/>
     </styles>
     <default-regex-options case-sensitive="true"/>
@@ -83,9 +82,6 @@
             <start>\/\*</start>
             <end>\*\/</end>
         </context>
-        <context id="sections" end-at-line-end="true" style-ref="sections">
-            <start>^#+</start>
-        </context>
         <context id="synopses" end-at-line-end="true" style-ref="synopses">
             <start>^=[^=]</start>
         </context>
@@ -115,9 +111,10 @@
                 <context ref="breaks" />
                 <context ref="notes" />
                 <context ref="boneyard" />
-                <context ref="sections" />
                 <context ref="synopses" />
                 <context ref="title" />
+                <context ref="markdown:atx-header" />
+                <context ref="markdown:asterisks-strong-emphasis" />
                 <context ref="markdown:asterisks-strong-emphasis" />
                 <context ref="markdown:asterisks-emphasis" />
                 <context ref="markdown:tilde-strikethrough" />
