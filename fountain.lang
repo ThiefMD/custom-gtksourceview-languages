@@ -31,17 +31,18 @@
         <property name="boneyard-end">)</property>
     </metadata>
     <styles>
-        <style id="scene" _name="Scene Headings" map-to="def:error"/>
+        <style id="scene" _name="Scene Headings" map-to="def:heading"/>
         <!-- or use map-to="def:keyword" - for Scene Headings without contrast background -->
-        <style id="scene-do" _name="Scene Headings" map-to="def:error"/>
+        <style id="scene-do" _name="Scene Headings" map-to="def:heading"/>
         <!-- or use map-to="def:keyword" - for Scene Headings without contrast background -->
-        <style id="character" _name="Character" map-to="def:string"/>
-        <style id="dual" _name="Dual Dialogue" map-to="def:floating-point"/>
+        <style id="character" _name="Character" map-to="def:strong-emphasis"/>
+        <style id="dual" _name="Dual Dialogue" map-to="def:strong-emphasis"/>
         <style id="parenthetical" _name="Parenthetical" map-to="def:comment"/>
-        <style id="transition" _name="Transition" map-to="def:identifier"/>
-        <style id="transition-do" _name="Transition" map-to="def:identifier"/>
-        <style id="breaks" _name="Page Breaks" map-to="def:identifier"/>
-        <style id="notes" _name="Notes" map-to="def:preprocessor"/>
+        <style id="transition" _name="Transition" map-to="def:link-text"/>
+        <style id="transition-do" _name="Transition" map-to="def:link-text"/>
+        <style id="breaks" _name="Page Breaks" map-to="def:thematic-break"/>
+        <style id="notes" _name="Notes" map-to="def:inline-code"/>
+        <style id="note-block" _name="Note Block" map-to="def:preformatted-section"/>
         <style id="boneyard" _name="Boneyard" map-to="def:preprocessor"/>
         <style id="sections" _name="Sections" map-to="def:preprocessor"/>
         <style id="synopses" _name="Synopses" map-to="def:preprocessor"/>
@@ -88,11 +89,22 @@
         <context id="synopses" end-at-line-end="true" style-ref="synopses">
             <start>^=[^=]</start>
         </context>
-        <context id="title" style-ref="title">
-            <match>^\s*(Title:|Credit:|Author:|Source:|Draft date:|Contact:)\s*</match>
+        <context id="title">
+            <match>^\s*(Title:|Credit:|Author:|Source:|Draft date:|Contact:|Notes:)\s*</match>
+            <include>
+                <context sub-pattern="1" style-ref="title"/>
+            </include>
+        </context>
+        <context id="note-block">
+            <match>^( {4,}|\t{1,})([^ \t]+.*)</match>
+
+            <include>
+                <context sub-pattern="2" style-ref="note-block"/>
+            </include>
         </context>
         <context id="fountain">
             <include>
+                <context ref="note-block" />
                 <context ref="scene" />
                 <context ref="scene-do" />
                 <context ref="character" />
@@ -106,6 +118,9 @@
                 <context ref="sections" />
                 <context ref="synopses" />
                 <context ref="title" />
+                <context ref="markdown:asterisks-strong-emphasis" />
+                <context ref="markdown:asterisks-emphasis" />
+                <context ref="markdown:tilde-strikethrough" />
             </include>
         </context>
     </definitions>
