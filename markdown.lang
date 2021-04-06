@@ -133,7 +133,7 @@
                  <em>HTML code</em> displayed <strong>literally</strong>.
     -->
     <context id="code-block" class="no-spell-check">
-      <match>^( {8,}|\t{2,})([^ \t]+.*)</match>
+      <match>^( {8,}|\t{2,})([^\*\-\+0-9]{1,1}[^ \t]+.*)</match>
 
       <include>
         <context sub-pattern="2" style-ref="code-block"/>
