@@ -69,7 +69,7 @@
     -->
     <!-- Note: line break can't be used in regex, so only underline is matched. -->
     <context id="setext-header" style-ref="header">
-      <match>^(-{3,}|=+)[ \t]*$</match>
+      <match>^(-+|=+)[ \t]*$</match>
     </context>
 
     <!-- Examples:
@@ -133,7 +133,7 @@
                  <em>HTML code</em> displayed <strong>literally</strong>.
     -->
     <context id="code-block" class="no-spell-check">
-      <match>^( {8,}|\t{2,})([^\*\-\+0-9]{1,1}[^ \t]+.*)</match>
+      <match>^( {8,}|\t{2,})([^ \t]+.*)</match>
 
       <include>
         <context sub-pattern="2" style-ref="code-block"/>
@@ -425,6 +425,7 @@
         <context ref="horizontal-rule"/>
         <context ref="atx-header"/>
         <context ref="setext-header"/>
+        <context ref="horizontal-rule"/>
         <context ref="list"/>
         <context ref="mdb:code-block-vala"/>
         <context ref="mdb:code-block-go"/>

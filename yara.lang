@@ -4,8 +4,8 @@
 
  This file is part of GtkSourceView
 
- Author: Wes <13hurdw@gmail.com>
- Copyright (C) 2017, 2020 
+ Author: Wes Hurd <13hurdw@gmail.com>
+ Copyright (C) 2017, 2020
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -47,7 +47,7 @@
   </styles>
 
   <definitions>
-    
+
     <context id="include" style-ref="include">
       <keyword>include</keyword>
       <!-- 'import' is currently in keywords-->
@@ -128,11 +128,16 @@
       <keyword>base64wide</keyword>
       <keyword>condition</keyword>
       <keyword>contains</keyword>
+      <keyword>endswith</keyword>
       <keyword>entrypoint</keyword> <!-- being deprecated-->
       <keyword>filesize</keyword>
       <keyword>for</keyword>
       <keyword>fullword</keyword>
       <keyword>global</keyword>
+      <keyword>icontains</keyword>
+      <keyword>iendswith</keyword>
+      <keyword>iequals</keyword>
+      <keyword>istartswith</keyword>
       <keyword>import</keyword>
       <keyword>in</keyword>
       <keyword>int8</keyword>
@@ -144,11 +149,13 @@
       <keyword>matches</keyword>
       <keyword>meta</keyword>
       <keyword>nocase</keyword>
+      <keyword>none</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
       <keyword>of</keyword>
       <keyword>private</keyword>
       <keyword>rule</keyword>
+      <keyword>startswith</keyword>
       <keyword>strings</keyword>
       <keyword>them</keyword>
       <keyword>uint8</keyword>

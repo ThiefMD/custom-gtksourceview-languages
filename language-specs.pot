@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-05-16 12:24+0200\n"
+"POT-Creation-Date: 2021-09-18 12:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -116,6 +117,7 @@ msgstr ""
 #: java.lang:24
 #: j.lang:23
 #: kotlin.lang:24
+#: lean.lang:23
 #: lex.lang:24
 #: llvm.lang:22
 #: logtalk.lang:23
@@ -155,6 +157,9 @@ msgstr ""
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -177,6 +182,9 @@ msgstr ""
 #: docbook.lang:23
 #: dtd.lang:23
 #: dtl.lang:25
+#: erb-html.lang:20
+#: erb-js.lang:20
+#: erb.lang:20
 #: gtk-doc.lang:24
 #: haddock.lang:23
 #: html.lang:25
@@ -223,7 +231,6 @@ msgstr ""
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
-#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -255,7 +262,6 @@ msgstr ""
 #: typescript-js-literals.lang:23
 #: typescript-js-modules.lang:23
 #: typescript-js-statements.lang:23
-#: typescript-js-values.lang:23
 #: typescript-jsx.lang:23
 #: typescript.lang:23
 #: typescript-type-expressions.lang:23
@@ -293,6 +299,7 @@ msgstr ""
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -321,6 +328,7 @@ msgstr ""
 #: puppet.lang:23
 #: rpmspec.lang:24
 #: scss.lang:23
+#: terraform.lang:23
 #: toml.lang:23
 #: yacc.lang:23
 #: yaml.lang:21
@@ -359,6 +367,7 @@ msgstr ""
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23
 #: gap.lang:23
 #: idl-exelis.lang:20
@@ -370,6 +379,7 @@ msgstr ""
 #: octave.lang:25
 #: R.lang:25
 #: scilab.lang:23
+#: star.lang:28
 msgid "Scientific"
 msgstr ""
 
