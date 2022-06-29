@@ -28,6 +28,7 @@
     <property name="globs">*.markdown;*.md;*.mkd</property>
     <property name="block-comment-start">&lt;!--</property>
     <property name="block-comment-end">--&gt;</property>
+    <property name="suggested-suffix">.md</property>
   </metadata>
 
   <styles>
@@ -69,7 +70,7 @@
     -->
     <!-- Note: line break can't be used in regex, so only underline is matched. -->
     <context id="setext-header" style-ref="header">
-      <match>^(-{3,}|=+)[ \t]*$</match>
+      <match>^(-+|=+)[ \t]*$</match>
     </context>
 
     <!-- Examples:
@@ -133,7 +134,7 @@
                  <em>HTML code</em> displayed <strong>literally</strong>.
     -->
     <context id="code-block" class="no-spell-check">
-      <match>^( {8,}|\t{2,})([^\*\-\+0-9]{1,1}[^ \t]+.*)</match>
+      <match>^( {8,}|\t{2,})([^ \t]+.*)</match>
 
       <include>
         <context sub-pattern="2" style-ref="code-block"/>
@@ -235,33 +236,21 @@
     -->
     <context id="inline-link">
       <match extended="true">
-        (?&lt;text_group&gt;            # Text group, including square brackets
-          \[(                           # Capture Link Text without ['s ]'s
-            (?>                         # (?> defines an atomic group, this is a performance improvement when using recursion
-              [^\[\]]+                  # Look for any char except closing square bracket
-              |(?&amp;text_group)       # OR: find recursively an other pattern with opening and closing square brackets
-            )*
-          )\]
-        )
-        (?:
-          \(
-            (\S*?)                       # URL: non-greedy non-whitespace characters
-            (?:
-              [ ]
-              "
-                (
-                  (?:[^"]|(?&lt;=\\)")*? # Title without double quotes around
-                )
-              "
-            )?
-          \)
-        )
+        \[(.*?)\]          # Link text.
+        \(                 # Literal opening parenthesis.
+          [ \t]*           # Optional spaces or tabs after the opening parenthesis.
+          (&lt;(.*?)&gt; | # URL with brackets.
+          (.*?))           # URL without brackets.
+          ([ \t]+(".*?"))? # Optional title.
+          [ \t]*           # Optional spaces or tabs before the closing parenthesis.
+        \)                 # Literal closing parenthesis.
       </match>
 
       <include>
-        <context sub-pattern="2" style-ref="link-text"/>
+        <context sub-pattern="1" style-ref="link-text"/>
         <context sub-pattern="3" class="no-spell-check" style-ref="url"/>
-        <context sub-pattern="4" style-ref="attribute-value"/>
+        <context sub-pattern="4" class="no-spell-check" style-ref="url"/>
+        <context sub-pattern="6" style-ref="attribute-value"/>
       </include>
     </context>
 
@@ -274,7 +263,7 @@
     <!-- Note: some assertions are used to differentiate reference link from
          link label. -->
     <context id="reference-link">
-      <match>(?&lt;!^ |^  |^   )\[\^?(.*?)\]([ \t]?\[(.*?)\])?(?!:)</match>
+      <match>(?&lt;!^ |^  |^   )\[(.*?)\]([ \t]?\[(.*?)\])?(?!:)</match>
 
       <include>
         <context sub-pattern="1" style-ref="link-text"/>
@@ -425,6 +414,7 @@
         <context ref="horizontal-rule"/>
         <context ref="atx-header"/>
         <context ref="setext-header"/>
+        <context ref="horizontal-rule"/>
         <context ref="list"/>
         <context ref="mdb:code-block-vala"/>
         <context ref="mdb:code-block-go"/>

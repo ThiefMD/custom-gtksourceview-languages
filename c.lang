@@ -28,6 +28,7 @@
     <property name="line-comment-start">//</property>
     <property name="block-comment-start">/*</property>
     <property name="block-comment-end">*/</property>
+    <property name="suggested-suffix">.c</property>
   </metadata>
 
   <styles>
@@ -38,6 +39,7 @@
     <style id="included-file"     name="Included File"         map-to="def:string"/>
     <style id="char"              name="Character"             map-to="def:character"/>
     <style id="keyword"           name="Keyword"               map-to="def:keyword"/>
+    <style id="type-keyword"      name="Type Keyword"          map-to="c:keyword"/>
     <style id="operator"          name="Operator"              map-to="def:operator"/>
     <style id="type"              name="Data Type"             map-to="def:type"/>
     <style id="storage-class"     name="Storage Class"         map-to="def:type"/>
@@ -61,7 +63,9 @@
       \\(                   # leading backslash
       [\\\"\'nrbtfav\?] |   # escaped character
       [0-7]{1,3} |          # one, two, or three octal digits
-      x[0-9A-Fa-f]+         # 'x' followed by hex digits
+      x[0-9A-Fa-f]+ |       # 'x' followed by hex digits
+      u[0-9A-Fa-f]{4} |     # 'u' followed by 4 hex digits
+      U[0-9A-Fa-f]{8}       # 'U' followed by 8 hex digits
       )
     </define-regex>
 
@@ -124,7 +128,7 @@
     </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
-      <start>L?"</start>
+      <start>(L|u8|u|U)?"</start>
       <end>"</end>
       <include>
         <context ref="printf"/>
@@ -136,15 +140,16 @@
     </context>
 
     <context id="char" style-ref="char" class="string">
-      <match>L?'(\%{escaped-character}|.)'</match>
+      <match>(L|u8|u|U)?'(\%{escaped-character}|.)'</match>
     </context>
 
     <!-- http://www.lysator.liu.se/c/ANSI-C-grammar-l.html -->
     <context id="float" style-ref="floating-point">
       <match extended="true">
         (?&lt;![\w\.])
-        ((\.[0-9]+ | [0-9]+\.[0-9]*) ([Ee][+-]?[0-9]*)? |
-         ([0-9]+[Ee][+-]?[0-9]*))
+        ((\.[0-9]+ | [0-9]+\.[0-9]*) ([Ee][+-]?[0-9]+)? |
+         ([0-9]+[Ee][+-]?[0-9]+) |
+         (0[xX][a-fA-F0-9]*\.?[a-fA-F0-9]*[pP][+-]?[0-9]+))
         [fFlL]?
         (?![\w\.])
       </match>
@@ -198,17 +203,20 @@
       <keyword>default</keyword>
       <keyword>do</keyword>
       <keyword>else</keyword>
-      <keyword>enum</keyword>
       <keyword>for</keyword>
       <keyword>fortran</keyword>
       <keyword>goto</keyword>
       <keyword>if</keyword>
       <keyword>return</keyword>
-      <keyword>struct</keyword>
       <keyword>switch</keyword>
+      <keyword>while</keyword>
+    </context>
+
+    <context id="type-keywords" style-ref="type-keyword">
+      <keyword>enum</keyword>
+      <keyword>struct</keyword>
       <keyword>typedef</keyword>
       <keyword>union</keyword>
-      <keyword>while</keyword>
     </context>
 
     <context id="operators" style-ref="operator">
@@ -221,29 +229,19 @@
     </context>
 
     <context id="types" style-ref="type">
-      <keyword>_Bool</keyword>
+      <keyword>(_B|b)ool</keyword>
       <keyword>_Complex</keyword>
       <keyword>_Imaginary</keyword>
-      <keyword>bool</keyword>
       <keyword>char</keyword>
-      <keyword>char(16|32)_t</keyword>
-      <keyword>double(_t)?</keyword>
-      <keyword>float(_t)?</keyword>
+      <keyword>double</keyword>
+      <keyword>float</keyword>
       <keyword>int</keyword>
-      <keyword>(u)?int(_least|_fast)?(8|16|32|64)_t</keyword>
-      <keyword>(u)?intmax_t</keyword>
-      <keyword>(u)?intptr_t</keyword>
       <keyword>long</keyword>
-      <keyword>ptrdiff_t</keyword>
-      <keyword>off(64)?_t</keyword>
       <keyword>short</keyword>
       <keyword>signed</keyword>
-      <keyword>size_t</keyword>
-      <keyword>ssize_t</keyword>
       <keyword>unsigned</keyword>
       <keyword>void</keyword>
-      <keyword>wchar_t</keyword>
-      <keyword>wint_t</keyword>
+      <keyword>[a-z_][0-9a-z_]+(_t|_T)</keyword>
     </context>
 
     <context id="storage-class" style-ref="storage-class">
@@ -274,7 +272,7 @@
       <keyword>TRUE</keyword>
       <keyword>FALSE</keyword>
       <keyword>__LINE__</keyword>
-      <keyword>__DATA__</keyword>
+      <keyword>__DATE__</keyword>
       <keyword>__FILE__</keyword>
       <keyword>__func__</keyword>
       <keyword>__TIME__</keyword>
@@ -329,6 +327,7 @@
         <context ref="invalid-octal"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
+        <context ref="type-keywords"/>
         <context ref="operators"/>
         <context ref="types"/>
         <context ref="storage-class"/>
